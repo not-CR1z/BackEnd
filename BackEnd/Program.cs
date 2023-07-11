@@ -24,10 +24,15 @@ namespace BackEnd
 			builder.Services.AddDbContext<AplicationDbContext>(options =>
 			options.UseOracle(builder.Configuration.GetConnectionString("Conexion")));
 
-			builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+			// Service
 			builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+			builder.Services.AddScoped<ILoginService, LoginService>();
 
-
+			// Repository
+			builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+			builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+			
 
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
