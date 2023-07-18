@@ -30,10 +30,12 @@ namespace BackEnd
 			// Service
 			builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 			builder.Services.AddScoped<ILoginService, LoginService>();
+			builder.Services.AddScoped<ICuestionarioService, CuestionarioService>();
 
 			// Repository
 			builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 			builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+			builder.Services.AddScoped<ICuestionarioRepository, CuestionarioRepository>();
 
 			// Cors
 			builder.Services.AddCors(options => options.AddPolicy("AllowWebApp", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));

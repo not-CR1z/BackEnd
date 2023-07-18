@@ -46,7 +46,7 @@ namespace BackEnd.Controllers
 		[Route("CambiarPassword")]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		[HttpPut]
-		public async Task<IActionResult> CambiarPassword ([FromBody] CambiarPasswordDTO cambiarPassword)
+		public async Task<IActionResult> CambiarPassword([FromBody] CambiarPasswordDTO cambiarPassword)
 		{
 			try
 			{
@@ -54,7 +54,7 @@ namespace BackEnd.Controllers
 				int idUsuario = JwtConfigurator.intGetTokenIdUsuario(identity);
 				string passwordEnciptado = Encriptar.EncriptarPassword(cambiarPassword.passwordAnterior);
 				var usuario = await _usuarioService.ValidatePassword(idUsuario, passwordEnciptado);
-				if(usuario == null)
+				if (usuario == null)
 				{
 					return BadRequest(new { message = "La contraseña es incorrecta" });
 				}
