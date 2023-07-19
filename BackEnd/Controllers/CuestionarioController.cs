@@ -19,15 +19,15 @@ namespace BackEnd.Controllers
             _cuestionarioService = cuestionarioService;
         }
       [HttpPost]
-      [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+      //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
       public async Task<IActionResult> Post([FromBody]Cuestionario cuestionario)
       {
          try
          {
-				var identity = HttpContext.User.Identity as ClaimsIdentity;
-				int idUsuario = JwtConfigurator.intGetTokenIdUsuario(identity);
+				//var identity = HttpContext.User.Identity as ClaimsIdentity;
+				//int idUsuario = JwtConfigurator.intGetTokenIdUsuario(identity);
 
-				cuestionario.UsuarioId = idUsuario;
+				cuestionario.UsuarioId = 1;
             cuestionario.Activo = 1;
             cuestionario.FechaCreacion = DateTime.Now;
             await _cuestionarioService.CreateCuestionario(cuestionario);

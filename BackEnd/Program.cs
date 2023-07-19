@@ -1,3 +1,4 @@
+using BackEnd.DataAccess;
 using BackEnd.Domain.IRepositories;
 using BackEnd.Domain.IServices;
 using BackEnd.Persistence.Content;
@@ -26,6 +27,8 @@ namespace BackEnd
 			builder.Services.AddDbContext<AplicationDbContext>(options =>
 			options.UseOracle(builder.Configuration.GetConnectionString("Conexion")));
 
+			DBConstants.ConnectionString = builder.Configuration.GetConnectionString("Conexion");
+
 
 			// Service
 			builder.Services.AddScoped<IUsuarioService, UsuarioService>();
@@ -48,7 +51,7 @@ namespace BackEnd
 									 ValidateAudience = true,
 									 ValidateLifetime = true,
 									 ValidateIssuerSigningKey = true,
-									 ValidIssuer = builder.Configuration["Jwt: Issuer"],
+									 ValidIssuer = builder.Configuration["Jwt:Issuer"],
 									 ValidAudience = builder.Configuration["Jwt:Audience"],
 									 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
 									 ClockSkew = TimeSpan.Zero
@@ -65,10 +68,10 @@ namespace BackEnd
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())
 			{
-				app.UseCors("AllowWebApp");
 				app.UseSwagger();
 				app.UseSwaggerUI();
 			}
+			app.UseCors("AllowWebApp");
 			app.UseAuthentication();
 			app.UseAuthorization();
 

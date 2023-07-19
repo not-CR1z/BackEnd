@@ -14,7 +14,7 @@ namespace BackEnd.Domain.Models
 
 		[Required]
 		[Column(TypeName = "varchar(150)")]
-		public int Descripcion { get; set; }
+		public string Descripcion { get; set; }
 
 
 		public DateTime FechaCreacion { get; set; }
@@ -22,8 +22,6 @@ namespace BackEnd.Domain.Models
 		public int Activo { get; set; }
 
 		public int UsuarioId { get; set; }
-
-		public Usuario Usuario { get; set; }
 
 		public List<Pregunta> listPreguntas { get; set; }
 

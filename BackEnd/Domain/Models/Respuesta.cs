@@ -15,6 +15,5 @@ namespace BackEnd.Domain.Models
 		public bool EsCorrecta { get; set; }
 
 		public int PreguntaId { get; set; }
-		public Pregunta Pregunta { get; set; }
 	}
 }

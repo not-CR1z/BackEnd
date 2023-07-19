@@ -1,4 +1,5 @@
-﻿using BackEnd.Domain.IRepositories;
+﻿using BackEnd.DataAccess;
+using BackEnd.Domain.IRepositories;
 using BackEnd.Domain.IServices;
 using BackEnd.Domain.Models;
 
@@ -14,7 +15,11 @@ namespace BackEnd.Services
 		}
 		public async Task CreateCuestionario(Cuestionario cuestionario)
 		{
-			await _cuestionarioRepository.CreateCuestionario(cuestionario);
+			//await _cuestionarioRepository.CreateCuestionario(cuestionario);
+
+			CuestionarioAccess cuestionarioAccess = new CuestionarioAccess();
+			cuestionarioAccess.Process(cuestionario);
+
 		}
 	}
 }

@@ -51,6 +51,7 @@ namespace BackEnd.Controllers
 			try
 			{
 				var identity = HttpContext.User.Identity as ClaimsIdentity;
+
 				int idUsuario = JwtConfigurator.intGetTokenIdUsuario(identity);
 				string passwordEnciptado = Encriptar.EncriptarPassword(cambiarPassword.passwordAnterior);
 				var usuario = await _usuarioService.ValidatePassword(idUsuario, passwordEnciptado);

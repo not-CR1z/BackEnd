@@ -12,7 +12,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    [Migration("20230718210511_v1.1")]
+    [Migration("20230719193741_v1.1")]
     partial class v11
     {
         /// <inheritdoc />
@@ -36,7 +36,8 @@ namespace BackEnd.Migrations
                     b.Property<int>("Activo")
                         .HasColumnType("NUMBER(10)");
 
-                    b.Property<int>("Descripcion")
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("varchar(150)");
 
                     b.Property<DateTime>("FechaCreacion")
@@ -46,15 +47,10 @@ namespace BackEnd.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int>("UsuariId")
-                        .HasColumnType("NUMBER(10)");
-
                     b.Property<int>("UsuarioId")
                         .HasColumnType("NUMBER(10)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Cuestionario");
                 });
@@ -127,47 +123,32 @@ namespace BackEnd.Migrations
                     b.ToTable("Usuario");
                 });
 
-            modelBuilder.Entity("BackEnd.Domain.Models.Cuestionario", b =>
-                {
-                    b.HasOne("BackEnd.Domain.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
             modelBuilder.Entity("BackEnd.Domain.Models.Pregunta", b =>
                 {
-                    b.HasOne("BackEnd.Domain.Models.Cuestionario", "Cuestionario")
-                        .WithMany("Pregunta")
+                    b.HasOne("BackEnd.Domain.Models.Cuestionario", null)
+                        .WithMany("listPreguntas")
                         .HasForeignKey("CuestionarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cuestionario");
                 });
 
             modelBuilder.Entity("BackEnd.Domain.Models.Respuesta", b =>
                 {
-                    b.HasOne("BackEnd.Domain.Models.Pregunta", "Pregunta")
-                        .WithMany("Respuesta")
+                    b.HasOne("BackEnd.Domain.Models.Pregunta", null)
+                        .WithMany("listRespuestas")
                         .HasForeignKey("PreguntaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Pregunta");
                 });
 
             modelBuilder.Entity("BackEnd.Domain.Models.Cuestionario", b =>
                 {
-                    b.Navigation("Pregunta");
+                    b.Navigation("listPreguntas");
                 });
 
             modelBuilder.Entity("BackEnd.Domain.Models.Pregunta", b =>
                 {
-                    b.Navigation("Respuesta");
+                    b.Navigation("listRespuestas");
                 });
 #pragma warning restore 612, 618
         }
