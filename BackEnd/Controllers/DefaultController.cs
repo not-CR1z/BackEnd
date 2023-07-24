@@ -10,7 +10,7 @@ namespace BackEnd.Controllers
 	{
 		// GET: api/<DefaultController>
 		[HttpGet]
-		public string Get()
+		public String Get()
 		{
 			return "Componente iniciado...";
 		}

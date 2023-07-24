@@ -11,7 +11,7 @@ namespace BackEnd.Services
 
 		public CuestionarioService(ICuestionarioRepository cuestionarioRepository)
 		{
-			_cuestionarioRepository = cuestionarioRepository;
+			this._cuestionarioRepository = cuestionarioRepository;
 		}
 		public async Task CreateCuestionario(Cuestionario cuestionario)
 		{
@@ -19,7 +19,16 @@ namespace BackEnd.Services
 
 			CuestionarioAccess cuestionarioAccess = new CuestionarioAccess();
 			cuestionarioAccess.Process(cuestionario);
+		}
 
+		public async Task<List<Cuestionario>> GetCuestionariosByUser(Int32 idUsuario)
+		{
+			return await this._cuestionarioRepository.GetCuestionariosByUser(idUsuario);
+		}
+
+		public async Task<Cuestionario> GetCuestionario(Int32 idCuestionario)
+		{
+			return await this._cuestionarioRepository.GetCuestionario(idCuestionario);
 		}
 	}
 }

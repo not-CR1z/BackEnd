@@ -9,28 +9,28 @@ namespace BackEnd.Services
 		private readonly IUsuarioRepository _usuarioRepository;
 		public UsuarioService(IUsuarioRepository usuarioRepository)
 		{
-			_usuarioRepository = usuarioRepository;
+			this._usuarioRepository = usuarioRepository;
 		}
 
 		public async Task SaveUser(Usuario usuario)
 		{
-			await _usuarioRepository.SaveUser(usuario);
+			await this._usuarioRepository.SaveUser(usuario);
 
 		}
 
-		public async Task<bool> ValidateExistence(Usuario usuario)
+		public async Task<Boolean> ValidateExistence(Usuario usuario)
 		{
-			return await _usuarioRepository.ValidateExistence(usuario);
+			return await this._usuarioRepository.ValidateExistence(usuario);
 		}
 
-		public async Task<Usuario> ValidatePassword(int idUsuario, string passwordAnterior)
+		public async Task<Usuario> ValidatePassword(Int32 idUsuario, String passwordAnterior)
 		{
-			return await _usuarioRepository.ValidatePassword(idUsuario, passwordAnterior);
+			return await this._usuarioRepository.ValidatePassword(idUsuario, passwordAnterior);
 		}
 
 		public async Task UpdatePassword(Usuario usuario)
 		{
-			await _usuarioRepository.UpdatePassword(usuario);
+			await this._usuarioRepository.UpdatePassword(usuario);
 		}
 
 	}

@@ -2,7 +2,7 @@
 {
 	public class CambiarPasswordDTO
 	{
-        public string passwordAnterior { get; set; }
-        public string nuevaPassword { get; set; }
-    }
+		public String passwordAnterior { get; set; }
+		public String nuevaPassword { get; set; }
+	}
 }

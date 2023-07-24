@@ -8,11 +8,11 @@ namespace BackEnd.Utils
 {
 	public class JwtConfigurator
 	{
-		public static string GetToken(Usuario userInfo, IConfiguration config)
+		public static String GetToken(Usuario userInfo, IConfiguration config)
 		{
-			string SecretKey = config["Jwt:SecretKey"];
-			string Issuer = config["Jwt:Issuer"];
-			string Audience = config["Jwt:Audience"];
+			String SecretKey = config["Jwt:SecretKey"];
+			String Issuer = config["Jwt:Issuer"];
+			String Audience = config["Jwt:Audience"];
 
 			var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SecretKey));
 			var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -33,7 +33,7 @@ namespace BackEnd.Utils
 
 			return new JwtSecurityTokenHandler().WriteToken(token);
 		}
-		public static int intGetTokenIdUsuario(ClaimsIdentity identity)
+		public static Int32 intGetTokenIdUsuario(ClaimsIdentity identity)
 		{
 			if (identity != null)
 			{
@@ -42,7 +42,7 @@ namespace BackEnd.Utils
 				{
 					if (claim.Type == "IdUsuario")
 					{
-						return int.Parse(claim.Value);
+						return Int32.Parse(claim.Value);
 					}
 				}
 			}

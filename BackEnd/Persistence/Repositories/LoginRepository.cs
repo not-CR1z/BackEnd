@@ -10,13 +10,13 @@ namespace BackEnd.Persistence.Repositories
 		private readonly AplicationDbContext _context;
 		public LoginRepository(AplicationDbContext context)
 		{
-			_context = context;
+			this._context = context;
 
 		}
 
 		public async Task<Usuario> ValidateUser(Usuario usuario)
 		{
-			var user = await _context.Usuario.Where(x => x.NombreUsuario == usuario.NombreUsuario && x.Password == usuario.Password).FirstOrDefaultAsync();
+			var user = await this._context.Usuario.Where(x => x.NombreUsuario == usuario.NombreUsuario && x.Password == usuario.Password).FirstOrDefaultAsync();
 			return user;
 		}
 	}

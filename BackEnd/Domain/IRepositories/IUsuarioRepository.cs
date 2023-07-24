@@ -5,8 +5,8 @@ namespace BackEnd.Domain.IRepositories
 	public interface IUsuarioRepository
 	{
 		Task SaveUser(Usuario usuario);
-		Task<bool> ValidateExistence(Usuario usuario);
-		Task<Usuario> ValidatePassword(int idUsuario, string passwordAnterior);
+		Task<Boolean> ValidateExistence(Usuario usuario);
+		Task<Usuario> ValidatePassword(Int32 idUsuario, String passwordAnterior);
 		Task UpdatePassword(Usuario usuario);
 
 	}

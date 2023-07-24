@@ -2,6 +2,6 @@
 {
 	public class DBConstants
 	{
-        public static String ConnectionString { get; set; }
-    }
+		public static String ConnectionString { get; set; }
+	}
 }

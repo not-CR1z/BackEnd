@@ -5,13 +5,13 @@ namespace BackEnd.Domain.Models
 {
 	public class Usuario
 	{
-		public int Id { get; set; }
+		public Int32 Id { get; set; }
 		[Required]
 		[Column(TypeName = "varchar(20)")]
-		public string NombreUsuario { get; set; }
+		public String NombreUsuario { get; set; }
 
 		[Required]
 		[Column(TypeName = "varchar(50)")]
-		public string Password { get; set; }
+		public String Password { get; set; }
 	}
 }

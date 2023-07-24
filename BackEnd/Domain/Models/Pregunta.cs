@@ -5,15 +5,15 @@ namespace BackEnd.Domain.Models
 {
 	public class Pregunta
 	{
-		public int Id { get; set; }
+		public Int32 Id { get; set; }
 
 		[Required]
-		[Column(TypeName ="varchar(100)")]
-		public string Descripcion { get; set; }
+		[Column(TypeName = "varchar(100)")]
+		public String Descripcion { get; set; }
 
-        public int CuestionarioId { get; set; }
+		public Int32 CuestionarioId { get; set; }
 
 
-        public List<Respuesta> listRespuestas { get; set; }
-    }
+		public List<Respuesta> listRespuestas { get; set; }
+	}
 }

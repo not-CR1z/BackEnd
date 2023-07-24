@@ -7,16 +7,13 @@ using BackEnd.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Configuration;
-using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace BackEnd
 {
 	public class Program
 	{
-		public static void Main(string[] args)
+		public static void Main(String[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
 

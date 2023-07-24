@@ -4,7 +4,6 @@ using BackEnd.DTO;
 using BackEnd.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -17,7 +16,7 @@ namespace BackEnd.Controllers
 		private readonly IUsuarioService _usuarioService;
 		public UsuarioController(IUsuarioService usuarioService)
 		{
-			_usuarioService = usuarioService;
+			this._usuarioService = usuarioService;
 		}
 
 		[HttpPost]
@@ -26,19 +25,19 @@ namespace BackEnd.Controllers
 			try
 			{
 
-				var validateExistence = await _usuarioService.ValidateExistence(usuario);
+				var validateExistence = await this._usuarioService.ValidateExistence(usuario);
 				if (validateExistence)
 				{
-					return BadRequest(new { message = "El usuario " + usuario.NombreUsuario + " ya existe" });
+					return this.BadRequest(new { message = "El usuario " + usuario.NombreUsuario + " ya existe" });
 				}
 				usuario.Password = Encriptar.EncriptarPassword(usuario.Password);
-				await _usuarioService.SaveUser(usuario);
+				await this._usuarioService.SaveUser(usuario);
 
-				return Ok(new { message = "Usuario registrado con éxito!" });
+				return this.Ok(new { message = "Usuario registrado con éxito!" });
 			}
 			catch (Exception ex)
 			{
-				return BadRequest(ex.Message);
+				return this.BadRequest(ex.Message);
 			}
 		}
 
@@ -50,25 +49,25 @@ namespace BackEnd.Controllers
 		{
 			try
 			{
-				var identity = HttpContext.User.Identity as ClaimsIdentity;
+				var identity = this.HttpContext.User.Identity as ClaimsIdentity;
 
-				int idUsuario = JwtConfigurator.intGetTokenIdUsuario(identity);
-				string passwordEnciptado = Encriptar.EncriptarPassword(cambiarPassword.passwordAnterior);
-				var usuario = await _usuarioService.ValidatePassword(idUsuario, passwordEnciptado);
+				Int32 idUsuario = JwtConfigurator.intGetTokenIdUsuario(identity);
+				String passwordEnciptado = Encriptar.EncriptarPassword(cambiarPassword.passwordAnterior);
+				var usuario = await this._usuarioService.ValidatePassword(idUsuario, passwordEnciptado);
 				if (usuario == null)
 				{
-					return BadRequest(new { message = "La contraseña es incorrecta" });
+					return this.BadRequest(new { message = "La contraseña es incorrecta" });
 				}
 				else
 				{
 					usuario.Password = Encriptar.EncriptarPassword(cambiarPassword.nuevaPassword);
-					await _usuarioService.UpdatePassword(usuario);
-					return Ok(new { message = "La password fue actualizada con éxtito!" });
+					await this._usuarioService.UpdatePassword(usuario);
+					return this.Ok(new { message = "La password fue actualizada con éxtito!" });
 				}
 			}
 			catch (Exception ex)
 			{
-				return BadRequest(ex.Message);
+				return this.BadRequest(ex.Message);
 			}
 		}
 	}
