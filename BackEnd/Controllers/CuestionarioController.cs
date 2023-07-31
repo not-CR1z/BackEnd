@@ -49,26 +49,28 @@ namespace BackEnd.Controllers
 						respuestaAccess.Process(respuesta, preguntaId);
 					}
 				}
+				GetCuestionario = cuestionario;
 				return this.Ok(new { message = "Se agregó el cuestionario exitosamente" });
 			}
 			catch (Exception ex)
 			{
 				return this.BadRequest(ex.Message);
 			}
-
 		}
+
+		Cuestionario GetCuestionario;
 
 		[Route("GetListCuestionarioByUser")]
 		[HttpGet]
-		public async Task<IActionResult> GetlistCuestionarioByUser()
+		public async Task<IActionResult> GetListCuestionarioByUser()
 		{
 			try
 			{
 				var identity = this.HttpContext.User.Identity as ClaimsIdentity;
 				Int32 idUsuario = JwtConfigurator.intGetTokenIdUsuario(identity);
 
-				var listCuestionario = await this._cuestionarioService.GetCuestionariosByUser(idUsuario);
-				return this.Ok(listCuestionario);
+				var listCuestionario = await _cuestionarioService.GetListCuestionarioByUser(idUsuario);
+				return Ok(GetCuestionario);
 			}
 			catch (Exception ex)
 			{
@@ -77,7 +79,7 @@ namespace BackEnd.Controllers
 		}
 
 		[HttpGet("{idCuestionario}")]
-		public async Task<IActionResult> Get(Int32 idCuestionario)
+		 public async Task<IActionResult> Get(Int32 idCuestionario)
 		{
 			try
 			{

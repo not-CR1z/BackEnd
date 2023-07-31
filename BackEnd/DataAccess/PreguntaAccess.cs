@@ -31,6 +31,6 @@ namespace BackEnd.DataAccess
 				}
 			}
 		}
-		public Int32 PreguntaId { get; set; }
+		public Int32 PreguntaId;
 	}
 }

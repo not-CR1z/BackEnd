@@ -1,6 +1,7 @@
 ﻿using BackEnd.Domain.Models;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace BackEnd.DataAccess
 {
@@ -31,10 +32,39 @@ namespace BackEnd.DataAccess
 
 					String cuestionarioId = Convert.ToString(command.Parameters[":id_param"].Value);
 					this.CuestionarioId = Int32.Parse(cuestionarioId);
+
+					connection.Close();
 				}
 			}
 		}
-		public Int32 CuestionarioId { get; set; }
+		public Int32 CuestionarioId;
 	}
 }
+
+	
+
+//	public class GetInfoTables
+//	{
+//		private string connectionData
+//		= "Data Source = 10.0.2.192:1521/SMTDES;User Id = CNXWOLFD; Password=CNXWOLFD";
+
+//		public List<Cuestionario> Get()
+//		{
+//			List<Cuestionario> cuestionario = new List<Cuestionario> ();
+//			string query = "select Id, Nombre, Descripcion, FechaCreacion, Activo, UsuarioId" + "from Cuestionario";
+
+//			using (OracleConnection connection = new OracleConnection(connectionData))
+
+//			{
+//				OracleCommand command = new OracleCommand(query, connection);
+//				connection.Open();
+
+//				connection.Close();
+
+//			}
+
+//				return cuestionario;
+//		}
+//	}
+//}
 

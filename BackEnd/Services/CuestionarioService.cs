@@ -21,14 +21,14 @@ namespace BackEnd.Services
 			cuestionarioAccess.Process(cuestionario);
 		}
 
-		public async Task<List<Cuestionario>> GetCuestionariosByUser(Int32 idUsuario)
+		public async Task<List<Cuestionario>> GetListCuestionarioByUser(Int32 idUsuario)
 		{
-			return await this._cuestionarioRepository.GetCuestionariosByUser(idUsuario);
+			return await _cuestionarioRepository.GetListCuestionarioByUser(idUsuario);
 		}
 
 		public async Task<Cuestionario> GetCuestionario(Int32 idCuestionario)
 		{
-			return await this._cuestionarioRepository.GetCuestionario(idCuestionario);
+			return await _cuestionarioRepository.GetCuestionario(idCuestionario);
 		}
 	}
 }
